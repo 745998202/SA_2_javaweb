@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <title>Course</title>
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <th>课程号</th>
+    <th>课程名</th>
+    <th>老师</th>
+    </thead>
+    <tbody>
+    <tr th:each="course :${courses}">
+        <td th:text="${course.cno}"></td>
+        <td th:text="${course.cname}"></td>
+        <td th:text="${course.teacher}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

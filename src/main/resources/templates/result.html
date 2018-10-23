@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    div{
+        width:100%;
+    }
+    .container-small{
+        max-width: 700px;
+    }
+    .gopost{
+        padding-top: 10px;
+    }
+</style>
+<body>
+<div class="container container-small">
+    <h1 style="text-align: center">学生信息查询系统</h1>
+    <div>
+        <button class="btn btn-warning"><a href="/Student">查看学生信息</a></button>
+        <button class="btn btn-warning"><a href="/Course">查看选课信息</a></button>
+        <button class="btn btn-warning"><a href="/Student_Course">查看学生成绩信息</a></button>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+        <th>学号</th>
+        <th>课程号</th>
+        <th>成绩</th>
+        </thead>
+        <tbody>
+        <td th:text="${sc.sno}"></td>
+        <td th:text="${sc.cno}"></td>
+        <td th:text="${sc.score}"></td>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

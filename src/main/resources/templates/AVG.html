@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <title>平均成绩统计</title>
+</head>
+<body>
+<canvas id="canvas" width="1200" height="600"></canvas>
+</body>
+<table class="table table-striped">
+    <thead>
+    <th>班级</th>
+    <th>平均成绩</th>
+    </thead>
+    <tbody>
+    <tr th:each="mygrade : ${grades}">
+        <td th:id="g+${mygrade.grade}" th:text="${mygrade.grade}"></td>
+        <td th:id="s+${mygrade.grade}" th:text="${mygrade.score}"></td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    var ocanvas = document.getElementById("canvas");
+    var mycanvas = ocanvas.getContext("2d");
+    var arr = [document.getElementById("s1").innerHTML,document.getElementById("s2").innerHTML,document.getElementById("s3").innerHTML];
+
+    //第一先定义一个画线的函数方法    画两条线
+    function line(aX,aY,bX,bY) {//开始和结束的横坐标  开始和结束的纵坐标
+        mycanvas.beginPath();
+        mycanvas.moveTo(aX,aY);
+        mycanvas.lineTo(bX,bY);
+        mycanvas.stroke();
+    }
+    line(300,80,300,480);
+    line(900,80,900,480);
+
+    //第二用for循环 画11条线   利用上面line的画线方法
+    for(var i=0;i<11;i++){
+        //300,80,900,80
+        //300,120,900,120
+        line(300,80+i*40,900,80+i*40);
+        write(100-i*10,280,80+i*40)
+
+    }
+    //第三定义一个矩形的函数方法
+    function rect(X,Y,width,height) {
+        mycanvas.beginPath();
+        mycanvas.fillStyle="#abcdef";
+        mycanvas.rect(X,Y,width,height);
+        mycanvas.fill();
+        mycanvas.closePath()
+    }
+
+    //第四定义一个方法  定义矩形的具体变量以及高引入数组
+    function wenrect() {
+        for(var i=0;i<3;i++){
+            var width=30;
+            var height=arr[i]*4;
+            var X=310+i*200+i*20;
+            var Y=480-height;
+            rect(X,Y,width,height);
+            write((i+1)+"班",320+i*200+i*10,500)
+        }
+    }
+    wenrect();
+
+    //添加字
+    function write(start,ox,oy) {
+        mycanvas.beginPath();
+        mycanvas.fillStyle = "black";
+        mycanvas.fillText(start,ox,oy);
+        mycanvas.closePath();
+    }
+</script>
+
+</body>
+</html>
